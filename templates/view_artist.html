@@ -1,0 +1,36 @@
+<html>
+<head>
+</head>
+<body>
+
+<h1>FatEar</h1>
+<a href="/home">Home</a>
+<a href="/profile">Profile</a>
+<a href="/logout">Logout</a>
+
+<h2>{{artist.fname}}</h2>
+
+<a href="{{artist.artistURL}}">{{artist.artistURL}}</a>
+
+<p>
+	{{artist.artistBio}}
+</p>
+
+<h4>Featured Songs:</h4>
+{% for line in songs %}
+<p>
+	<i><a href={{line.songURL}}>{{line.title}}</a></i><br>
+	<small>{{line.albumName}}</small>
+</p>
+{% endfor %}
+
+<h4>Featured Albums</h4> 
+{% for line in albums %}
+<p>
+	<i><a href={{line.albumURL}}>{{line.albumName}}</a></i>
+</p>
+{% endfor %}
+
+</body>
+
+</html>

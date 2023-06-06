@@ -1,0 +1,36 @@
+<html>
+<head>
+
+</head>
+<body>
+
+<h1>FatEar</h1>
+<h2>Friends</h2>
+
+<form action="/" method="GET">
+{% if n == 0 %}
+<p>No friends found</p>
+
+{% else %}
+{% for line in user_list %}
+<span>{{line.friend_name}}</span>
+<button type="submit" formaction="/show_user" name="user" value={{line.friend_name}}>
+    <small>
+        View Profile
+    </small>
+</button>
+<button type="submit" formaction="/remove_friend" name="user" value={{line.friend_name}}>
+    <small>
+        Remove Friend
+    </small>
+</button>
+<br>
+{% endfor %}
+{% endif %}
+</form>
+
+<a href="/profile">Back</a>
+
+</body>
+
+</html>

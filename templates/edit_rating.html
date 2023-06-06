@@ -1,0 +1,51 @@
+</head>
+<body>
+
+<h1>FatEar</h1>
+
+{% if status == "create" %}
+    <h3>Rate</h3>
+    <p>
+        {% if tp == "song" %}
+            <i>{{item.title}}</i>
+            <br>
+            <small>{{item.albumName}}</small> &diams;
+            <small>{{item.fname}}</small>
+        {% else %}
+            <i>{{item.albumName}}</i>
+            <br>
+            <small>{{item.fname}}</small>
+        {% endif %}
+    </p>
+    
+
+{% else %}
+    <h3>Edit Rating</h3>
+    <p>
+        {% if tp == "song" %}
+            <i>{{item.title}}</i>
+            <br>
+            <small>{{item.albumName}}</small> &diams;
+            <small>{{item.fname}}</small>
+            <br>
+            <span>Previous rating: {{item.stars}}</span>
+        {% else %}
+            <i>{{item.albumName}}</i>
+            <br>
+            <small>{{item.fname}}</small>
+            <br>
+            <span>Previous rating: {{item.stars}}</span>
+        {% endif %}
+    </p>
+{% endif %}
+
+<form action="/post_rating" method="GET">
+	<input type="text" name = "text" placeholder="stars [0-5]" required />
+    <input type="hidden" name="id" value={{id}} />
+    <input type="hidden" name="tp" value={{tp}} />
+    <input type="hidden" name="status" value={{status}} />
+	<input type="submit" value = Save />
+</form>
+
+</body>
+</html>

@@ -1,0 +1,43 @@
+<html>
+<head>
+
+</head>
+<body>
+
+<h1>FatEar</h1>
+<h2>Friend Requests</h2>
+
+<form action="/" method="GET">
+
+{% if n == 0 %}
+<p>No requests found</p>
+
+{% else %}
+{% for line in user_list %}
+<span>{{line.friend_name}}</span>
+<button type="submit" formaction="/show_user" name="user" value={{line.friend_name}}>
+    <small>
+        View Profile
+    </small>
+</button>
+<button type="submit" formaction="/accept_friendship" name="user" value={{line.friend_name}}>
+    <small>
+        Accept
+    </small>
+</button>
+<button type="submit" formaction="/decline_friendship" name="user" value={{line.friend_name}}>
+    <small>
+        Decline
+    </small>
+</button>
+<br>
+{% endfor %}
+{% endif %}
+
+</form>
+
+<a href="/profile">Go back</a>
+
+</body>
+
+</html>

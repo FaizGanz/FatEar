@@ -1,0 +1,73 @@
+<html>
+<head>
+</head>
+<body>
+
+<h1>FatEar</h1> 
+<h2>Hey, here's what you missed!</h2> 
+
+<a href="/home">Home</a>
+<a href="/profile">Profile</a>
+<a href="/logout">Logout</a>
+
+<h4>Songs Reviews</h4>
+
+{% if no_songs > 0 %}
+{% for line in songReviews %}
+<p>
+	{{line.follows}}
+	<br>
+	<i>
+		<a href={{line.songURL}}>{{line.title}}</a>
+	</i> 
+	<small>
+		{{line.reviewDate}}
+	</small>
+	<br>
+	<small>
+		<span><small>{{line.albumName}}</small> &diams;</span>
+		<span>{{line.fname}}</span>
+	</small>
+	<br>
+	{{line.reviewText}}
+	<br>
+</p>
+{% endfor %}
+{% else %}
+<p>You are up to date with song reviews!</p>
+{% endif %}
+
+
+<h4>Albums Reviews</h4>
+
+{% if no_albums > 0 %}
+{% for line in albumReviews %}
+<p>
+	{{line.follows}}
+	<br>
+	<i>
+		<a href={{line.albumURL}}>{{line.albumName}}</a>
+	</i> 
+	<small>
+		{{line.reviewDate}}
+	</small>
+	<br>
+	<small>
+		{{line.fname}}
+	</small>
+	<br>
+	{{line.reviewText}}
+	<br>
+</p>
+{% endfor %}
+{% else %}
+<p> You are up to date with album reviews! </p>
+{% endif %}
+
+
+<br>
+
+
+</body>
+
+</html>

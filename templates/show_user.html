@@ -1,0 +1,65 @@
+<html>
+<head>
+</head>
+<body>
+
+<h1>FatEar</h1>
+
+<a href="/home">Home</a>
+<a href="/profile">Profile</a>
+<a href="/logout">Logout</a>
+
+<h2>{{user}}</h2>
+
+<h4>Song Reviews</h4> 
+{% if n == 0 %}
+<p>This user did not review any songs yet</p>
+{% else %}
+{% for line in songs %}
+<p>
+	<i>
+		<a href={{line.songURL}}>{{line.title}}</a>
+	</i> 
+	<small>
+		{{line.reviewDate}}
+	</small>
+	<br>
+	<small>
+		<span><small>{{line.albumName}}</small> &diams;</span>
+		<span>{{line.fname}}</span>
+	</small>
+	<br>
+	{{line.reviewText}}
+	<br>
+</p>
+{% endfor %}
+{% endif %} 
+
+<h4>Album Reviews</h4> 
+{% if m == 0 %}
+<p>This user did not review any albums yet</p>
+{% else %}
+{% for line in albums %}
+<p>
+	<i>
+		<a href={{line.albumURL}}>{{line.albumName}}</a>
+	</i> 
+	<small>
+		{{line.reviewDate}}
+	</small>
+	<br>
+	<small>
+		{{line.fname}}
+	</small>
+	<br>
+	{{line.reviewText}}
+	<br>
+</p>
+{% endfor %}
+{% endif %}
+
+
+
+</body>
+
+</html>

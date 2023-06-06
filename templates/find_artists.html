@@ -1,0 +1,40 @@
+<html>
+<head>
+
+</head>
+<body>
+
+<h1>FatEar</h1>
+<h2>Artists</h2>
+
+{% if n == 0 %}
+    <p>No artists found</p>
+{% endif %}
+
+<form action="/" method="POST">
+    {% for line in artists %}
+        <p>
+            <span>
+                {{line.fname}}
+            </span>
+            <button type="submit" formaction="/view_artist" name="artistID" value={{line.artistID}}>
+                <small>View Profile</small>
+            </button>
+            {% if line.artistID in fanof %}
+                <button type="submit" formaction="/unfan" name="artistID" value={{line.artistID}}>
+                    <small>Unfollow</small>
+                </button>
+            {% else %}
+                <button type="submit" formaction="/fan" name="artistID" value={{line.artistID}}>
+                    <small>Follow</small>
+                </button>
+            {% endif %}
+        </p>
+    {% endfor %}
+</form>
+
+<a href="/home">Go back</a>
+
+</body>
+
+</html>

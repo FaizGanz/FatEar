@@ -1,0 +1,37 @@
+<html>
+<head>
+
+</head>
+<body>
+
+<h1>FatEar</h1>
+<h2>Followers</h2>
+
+<form action="/" method="GET">
+{% if n == 0 %}
+<p>No followers found</p>
+    
+{% else %}
+{% for line in user_list %}
+<span>{{line.follower}}</span>
+<button type="submit" formaction="/show_user" name="user" value={{line.follower}}>
+    <small>
+        View Profile
+    </small>
+</button>
+<button type="submit" formaction="/remove_follower" name="user" value={{line.follower}}>
+    <small>
+        Remove Follower
+    </small>
+</button>
+<br>
+{% endfor %}
+{% endif %}
+</form>
+
+<a href="/profile">Go back</a>
+
+</body>
+
+
+</html>

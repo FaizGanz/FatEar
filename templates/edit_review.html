@@ -1,0 +1,54 @@
+</head>
+<body>
+
+<h1>FatEar</h1>
+
+{% if status == "create" %}
+    <h3>Review</h3>
+    <p>
+        {% if tp == "song" %}
+            <i>{{item.title}}</i>
+            <br>
+            <small>{{item.albumName}}</small> &diams;
+            <small>{{item.fname}}</small>
+        {% else %}
+            <i>{{item.albumName}}</i>
+            <br>
+            <small>{{item.fname}}</small>
+        {% endif %}
+    </p>
+    
+
+{% else %}
+    <h3>Edit Review</h3>
+    <p>
+        {% if tp == "song" %}
+            <i>{{item.title}}</i>
+            <small>{{item.reviewDate}}</small>
+            <br>
+            <small>{{item.albumName}}</small> &diams;
+            <small>{{item.fname}}</small>
+            <br>
+            <span>{{item.reviewText}}</span>
+        {% else %}
+            <i>{{item.albumName}}</i>
+            <small>{{item.reviewDate}}</small>
+            <br>
+            <small>{{item.fname}}</small>
+            <br>
+            <span>{{item.reviewText}}</span>
+        {% endif %}
+    </p>
+{% endif %}
+
+
+<form action="/post_review" method="GET">
+	<input type="text" name = "text" placeholder="type review" required />
+    <input type="hidden" name="id" value={{id}} />
+    <input type="hidden" name="tp" value={{tp}} />
+    <input type="hidden" name="status" value={{status}} />
+	<input type="submit" value = Save />
+</form>
+
+</body>
+</html>

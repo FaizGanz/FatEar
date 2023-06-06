@@ -1,0 +1,65 @@
+<html>
+<head>
+
+</head>
+<body>
+
+<h1>FatEar</h1>
+<h2>Users</h2>
+
+{% if results == 0 %}
+<p>No results found</p>
+{% endif %}
+
+<form action="/" method="GET">
+{% for line in users %}
+<span>
+    {{line.username}}
+</span>
+{% if line.username != username %}
+<button type="submit" formaction="/show_user" name="user" value={{line.username}}>
+    <small>
+        View Profile
+    </small>
+</button>
+
+{% if line.username in friends %}
+<button type="submit" formaction="/remove_friend" name="user" value={{line.username}}>
+    <small>Remove Friend</small>
+</button>
+{% elif line.username in pending %}
+<button type="submit" formaction="/remove_request" name="user" value={{line.username}}>
+    <small>Remove Request</small>
+</button>
+{% else %}
+<button type="submit" formaction="/request_friendship" name="user" value={{line.username}}>
+    <small>Request Friendship</small>
+</button>
+{% endif %}
+
+{% if line.username in follows %}
+<button type="submit" formaction="/unfollow" name="user" value={{line.username}}>
+    <small>Unfollow</small>
+</button>
+{% else %}
+<button type="submit" formaction="/follow" name="user" value={{line.username}}>
+    <small>Follow</small>
+</button>
+{% endif %}
+<br>
+
+{% else %}
+<button type="submit" formaction="/profile" name="user" value={{line.username}}>
+    <small>View Profile</small>
+</button>
+<br>
+{% endif %}
+
+{% endfor %}
+</form>
+
+<a href="/profile">Go back</a>
+
+</body>
+
+</html>

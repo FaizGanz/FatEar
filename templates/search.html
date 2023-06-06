@@ -1,0 +1,102 @@
+<html>
+<head>
+</head>
+<body>
+
+<h1>FatEar</h1> 
+<h2>Search Results</h2>
+
+{% if username %}
+	<a href="/home">Home</a>
+	<a href="/profile">Profile</a>
+	<a href="/logout">Logout</a>
+{% else %}
+	<a href="/">Go back</a>
+{% endif %}
+
+<h4>Songs:</h4>
+{% if n == 0 %}
+<p>No songs match your search</p>
+{% else %}
+	{% for line in songs %}
+		<form action="/" method="GET">
+			<p>
+				<span><i><a href={{line.songURL}}>{{line.title}}</a></i></span>
+				<br>
+				<span><small>{{line.albumName}}</small> &diams;</span>
+				<span><small>{{line.fname}}</small></span>
+				<br>
+				{% if username %}
+					{% if line.songID in reviewed_songs %}
+					<input type="hidden" name="review_status" value='update' />
+					<button type="submit" formaction="/edit_review" name="songID" value={{line.songID}}>
+						<small>Edit Review</small>
+					</button>
+					{% else %}
+					<input type="hidden" name="review_status" value='create' />
+					<button type="submit" formaction="/edit_review" name="songID" value={{line.songID}}>
+						<small>Review</small>
+					</button>
+					{% endif %}
+
+					{% if line.songID in rated_songs %}
+					<input type="hidden" name="rating_status" value='update' />
+					<button type="submit" formaction="/edit_rating" name="songID" value={{line.songID}}>
+						<small>Edit Rating</small>
+					</button>
+					{% else %}
+					<input type="hidden" name="rating_status" value='create' />
+					<button type="submit" formaction="/edit_rating" name="songID" value={{line.songID}}>
+						<small>Rate</small>
+					</button>
+					{% endif %}
+				{% endif %}
+			</p>
+		</form>
+	{% endfor %}
+{% endif %}
+
+<h4>Albums:</h4>
+{% if m == 0 %}
+	<p>No albums match your search</p>
+{% else %}
+	{% for line in albums %}
+		<form action="/" method="GET">
+			<p>
+				<span><i><a href={{line.albumURL}}>{{line.albumName}}</a></i></span>
+				<br>
+				<span><small>{{line.fname}}</small></span>
+				<br>
+				{% if username %}
+					{% if line.albumID in reviewed_albums %}
+					<input type="hidden" name="review_status" value='update' />
+					<button type="submit" formaction="/edit_review" name="albumID" value={{line.albumID}}>
+						<small>Edit Review</small>
+					</button>
+					{% else %}
+					<input type="hidden" name="review_status" value='create' />
+					<button type="submit" formaction="/edit_review" name="albumID" value={{line.albumID}}>
+						<small>Review</small>
+					</button>
+					{% endif %}
+
+					{% if line.albumID in rated_albums %}
+					<input type="hidden" name="rating_status" value='update' />
+					<button type="submit" formaction="/edit_rating" name="albumID" value={{line.albumID}}>
+						<small>Edit Rating</small>
+					</button>
+					{% else %}
+					<input type="hidden" name="rating_status" value='create' />
+					<button type="submit" formaction="/edit_rating" name="albumID" value={{line.albumID}}>
+						<small>Rate</small>
+					</button>
+					{% endif %}
+				{% endif %}
+			</p>
+		</form>
+	{% endfor %}
+{% endif %}
+
+</body>
+
+</html>
